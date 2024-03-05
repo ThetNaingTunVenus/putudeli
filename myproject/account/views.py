@@ -11,3 +11,7 @@ from django.views.generic import TemplateView, View, CreateView, DetailView,Form
 from .forms import *
 from .models import *
 # Create your views here.
+
+class TestView(View):
+    def get(self, request):
+        return render(request, 'base.html')
