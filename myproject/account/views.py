@@ -14,4 +14,4 @@ from .models import *
 
 class TestView(View):
     def get(self, request):
-        return render(request, 'base.html')
+        return render(request, 'datatable.html')
