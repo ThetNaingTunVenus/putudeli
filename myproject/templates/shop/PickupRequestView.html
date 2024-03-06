@@ -1,0 +1,52 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Data Table</h4>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered zero-configuration">
+                        <thead>
+                            <tr>
+                                <th>Shop</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>Status</th>
+                                <th>action</th>
+                                <th>rmk</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in pr %}
+                            <tr>
+                                <td>{{i.shopname}}</td>
+                                <td>{{i.shop}}</td>
+                                <td>{{i.shop_address}}</td>
+                                <td>{{i.status}}</td>
+                                <td>{{i.id}}</td>
+                                <td>{{i.shopname}}</td>
+                            </tr>
+                            {% endfor %}
+                            
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Shop</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>Status</th>
+                                <th>action</th>
+                                <th>rmk</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
