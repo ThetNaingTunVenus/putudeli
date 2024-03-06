@@ -19,8 +19,9 @@ class ShopHome(View):
 
 class PickupRequestView(View):
     def get(self, request):
-        pr = PickupRequest.objects.all()
-        context = {'pr': pr}
+        pr = PickupRequest.objects.filter(usr=request.user)
+        pt = PickupItems.objects.filter(shop_usr=request.user)
+        context = {'pr': pt}
         return render(request, 'shop/PickupRequestView.html', context)
 
 class PickupRequestInline():
@@ -32,7 +33,9 @@ class PickupRequestInline():
         named_formsets = self.get_named_formsets()
         if not all((x.is_valid() for x in named_formsets.values())):
             return self.render_to_response(self.get_context_data(form=form))
-
+        usr = self.request.user
+        form.instance.usr = usr
+        # print(usr)
         self.object = form.save()
 
         # for every formset, attempt to find a specific formset save function
@@ -50,11 +53,13 @@ class PickupRequestInline():
         Hook for custom formset saving.. useful if you have multiple formsets
         """
         variants = formset.save(commit=False)  # self.save_formset(formset, contact)
+        # variants.usr = self.request.user
         # add this, if you have can_delete=True parameter set in inlineformset_factory func
         for obj in formset.deleted_objects:
             obj.delete()
         for variant in variants:
             variant.pickup = self.object
+            variant.shop_usr = self.request.user
             variant.save()
 
     def formset_images_valid(self, formset):

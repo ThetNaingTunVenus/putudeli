@@ -7,7 +7,7 @@ from account.models import *
 
 
 class PickupRequest(models.Model):
-    # usr = models.ForeignKey(User, on_delete=models.CASCADE)
+    usr = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     shopname = models.CharField(max_length=255, blank=True, null=True)
     phone = models.CharField(max_length=255, blank=True, null=True)
     shop_address = models.TextField()
@@ -21,6 +21,7 @@ class PickupRequest(models.Model):
 
 class PickupItems(models.Model):
     pickup = models.ForeignKey(PickupRequest, on_delete=models.CASCADE)
+    shop_usr = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     customer_name = models.CharField(max_length=255, blank=True, null=True)
     phone = models.CharField(max_length=255, blank=True, null=True)
     address = models.CharField(max_length=255, blank=True, null=True)

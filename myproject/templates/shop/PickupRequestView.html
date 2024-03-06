@@ -11,36 +11,41 @@
                     <table class="table table-striped table-bordered zero-configuration">
                         <thead>
                             <tr>
-                                <th>Shop</th>
-                                <th>Phone</th>
+                                <th>ID</th>
+                                <th>Request Date</th>
+                                <th>Customer Name</th>
                                 <th>Address</th>
                                 <th>Status</th>
-                                <th>action</th>
-                                <th>rmk</th>
+                                
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for i in pr %}
                             <tr>
-                                <td>{{i.shopname}}</td>
-                                <td>{{i.shop}}</td>
-                                <td>{{i.shop_address}}</td>
-                                <td>{{i.status}}</td>
                                 <td>{{i.id}}</td>
-                                <td>{{i.shopname}}</td>
+                                <td>{{i.created_at}}</td>
+                                <td>{{i.customer_name}}|{{i.phone}}</td>
+                                <td>{{i.address}}</td>
+                                
+                                <td>
+                                    {% if i.status == 1 %}
+                                    <span class="badge badge-pill badge-secondary">requested</span>
+                                    {% elif i.status == 2 %}
+                                    <span class="badge badge-pill badge-info">by delivery</span>
+                                    {% elif i.status == 3 %}
+                                    <span class="badge badge-pill badge-success">completed</span>
+                                    {% endif %}
+                                </td>
+                                
+                                
+                                <td><a href="#" class="btn btn-sm btn-info">view detail</a></td>
                             </tr>
                             {% endfor %}
                             
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <th>Shop</th>
-                                <th>Phone</th>
-                                <th>Address</th>
-                                <th>Status</th>
-                                <th>action</th>
-                                <th>rmk</th>
-                            </tr>
+                            
                         </tfoot>
                     </table>
                 </div>
