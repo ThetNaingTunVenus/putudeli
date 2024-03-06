@@ -15,4 +15,4 @@ from account.views import *
 
 class ShopHome(View):
     def get(self, request):
-        return HttpResponse('Shop Home')
+        return render(request, 'shop/ShopHome.html')

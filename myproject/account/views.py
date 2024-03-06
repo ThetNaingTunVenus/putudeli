@@ -44,3 +44,12 @@ class UserLogoutView(View):
     def get(self,request):
         logout(request)
         return redirect('account:UserLoginView')
+
+class UserCreateView(CreateView):
+    model = User
+    template_name = 'UserCreateView.html'
+    form_class = CreateUserForm
+    success_url = reverse_lazy('account:TestView')
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
