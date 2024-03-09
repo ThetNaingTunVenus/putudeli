@@ -34,6 +34,7 @@ class UserLoginView(FormView):
             if usr.is_emp:
                 return HttpResponse('this user is Emp')
             if usr.is_cus:
+                login(self.request, usr)
                 return redirect('shop:ShopHome')
             
         else:

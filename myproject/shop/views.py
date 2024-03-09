@@ -19,10 +19,31 @@ class ShopHome(View):
 
 class PickupRequestView(View):
     def get(self, request):
-        pr = PickupRequest.objects.filter(usr=request.user)
-        pt = PickupItems.objects.filter(shop_usr=request.user)
-        context = {'pr': pt}
-        return render(request, 'shop/PickupRequestView.html', context)
+        req = request.GET.get('req')
+        # if deli == None:
+        if req == None:
+            pr = PickupRequest.objects.filter(usr=request.user)
+            pt = PickupItems.objects.filter(shop_usr=request.user)
+            context = {'pr': pt}
+            return render(request, 'shop/PickupRequestView.html', context)
+        else:
+            pt = PickupItems.objects.filter(shop_usr=request.user, status=req)
+            context = {'pr': pt}
+            return render(request, 'shop/PickupRequestView.html', context)
+        
+
+
+class PickupRequestDetailView(DetailView):
+    template_name = 'shop/PickupRequestDetailView.html'
+    model = PickupItems
+    context_object_name = 'ord_id'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # context['allstatus'] = STATUS
+        return context
+
+
 
 class PickupRequestInline():
     form_class = PickupRequestForm
