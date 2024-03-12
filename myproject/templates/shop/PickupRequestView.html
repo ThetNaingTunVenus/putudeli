@@ -43,25 +43,8 @@
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <!-- Modal HTML embedded directly into document -->
-<div id="ex1" class="modal">
-    <p>Thanks for clicking. That felt good.</p>
-    <p>Thanks for clicking. That felt good.</p>
-    <p>Thanks for clicking. That felt good.</p>
-    <p>Thanks for clicking. That felt good.</p>
-    <p>Thanks for clicking. That felt good.</p>
-    <p>Thanks for clicking. That felt good.</p>
-    <p>Thanks for clicking. That felt good.</p>
-    <p>Thanks for clicking. That felt good.</p>
-    <p>Thanks for clicking. That felt good.</p>
-    <p>Thanks for clicking. That felt good.</p>
-    <p>Thanks for clicking. That felt good.</p>
-
-    <a href="#" rel="modal:close" class="btn btn-danger btn-block">Close</a>
-  </div>
-  
-  <!-- Link to open the modal -->
-  <p><a href="#ex1" rel="modal:open" class="btn btn-sm btn-primary">View Detail</a></p>
+                                   
+  <p><a href="{% url 'shop:PickupRequestDetailView' i.id %}" class="btn btn-sm btn-primary">View Detail</a></p>
                                 </td>
                                 
                                 
